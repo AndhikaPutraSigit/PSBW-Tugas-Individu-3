@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Mahasiswa - Andhika Putra Sigit</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- CSS milik sendiri melalui Flask -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- JavaScript milik sendiri melalui Flask -->
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+        defer
+    ></script>
+</head>
+
+<body>
+    <header class="text-center py-4">
+        <div class="container">
+            <h1>Profil Mahasiswa</h1>
+            <p>Selamat datang di website profil saya</p>
+        </div>
+    </header>
+
+    <main class="container my-4">
+
+        <!-- Profil Mahasiswa -->
+        <section class="card shadow-sm mb-4">
+            <div class="card-body text-center">
+                <!-- Foto profil melalui Flask -->
+                <img
+                    src="{{ url_for('static', filename='foto.png') }}"
+                    alt="Foto profil Andhika Putra Sigit"
+                    class="profile-photo mb-3"
+                >
+
+                <h2>Andhika Putra Sigit</h2>
+                <p><strong>NBI:</strong> 1482500052</p>
+                <p><strong>Program Studi:</strong> Sistem Teknologi Informasi</p>
+            </div>
+        </section>
+
+        <!-- Keterampilan -->
+        <section class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h2 class="h4 mb-3">Keterampilan</h2>
+
+                <div class="row g-2 mb-3">
+                    <div class="col-md-6">
+                        <input
+                            type="text"
+                            id="searchSkill"
+                            class="form-control"
+                            placeholder="Cari keterampilan..."
+                        >
+                    </div>
+
+                    <div class="col-md-6">
+                        <select id="filterSkill" class="form-select">
+                            <option value="all">Semua Keterampilan</option>
+                            <option value="web">Web Development</option>
+                            <option value="programming">Programming</option>
+                            <option value="office">Office</option>
+                        </select>
+                    </div>
+                </div>
+
+                <form id="skillForm" class="row g-2 mb-3">
+                    <div class="col-md-5">
+                        <input
+                            type="text"
+                            id="skillName"
+                            class="form-control"
+                            placeholder="Nama keterampilan"
+                            required
+                        >
+                    </div>
+
+                    <div class="col-md-4">
+                        <select id="skillCategory" class="form-select" required>
+                            <option value="web">Web Development</option>
+                            <option value="programming">Programming</option>
+                            <option value="office">Office</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary w-100">
+                            Tambah
+                        </button>
+                    </div>
+                </form>
+
+                <div id="notification" class="mb-3" aria-live="polite"></div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Keterampilan</th>
+                                <th>Kategori</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="skillTable">
+                            <!-- Data diisi melalui script.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nilai Mata Kuliah -->
+        <section class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h2 class="h4 mb-3">Nilai Mata Kuliah</h2>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Mata Kuliah</th>
+                                <th>Nilai</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dasar Pemrograman</td>
+                                <td>A</td>
+                            </tr>
+                            <tr>
+                                <td>Sistem Basis Data</td>
+                                <td>AB</td>
+                            </tr>
+                            <tr>
+                                <td>Pengembangan Sistem Berbasis Web</td>
+                                <td>A</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="gpaSection">
+                    <h3 class="h5">Ringkasan Nilai</h3>
+                    <p>Rata-rata nilai: <strong id="averageGrade">-</strong></p>
+                    <p>Predikat: <strong id="gradeLevel">-</strong></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-3">
+        <p class="mb-0">
+            &copy; 2026 Andhika Putra Sigit. Website Profil Mahasiswa.
+        </p>
+    </footer>
+</body>
+</html>
